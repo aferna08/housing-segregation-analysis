@@ -1,4 +1,4 @@
-pacman::p_load(tidyverse, here, fixest, modelsummary)
+pacman::p_load(tidyverse, here, fixest, modelsummary, gt)
 
 # Load Data
 iv_data <- read_csv(here("data", "iv_data.csv"))
@@ -101,4 +101,6 @@ iv_table <- modelsummary(list("Clay Instrument" = one_iv, "Clay & Hydraulic \nCo
              stars = TRUE,
              coef_map = cm,
              gof_omit = "R2(?! Adj)|AIC|BIC|RMSE|Std.Errors",
-             add_rows = rows)
+             add_rows = rows,
+             output = "gt")
+iv_table

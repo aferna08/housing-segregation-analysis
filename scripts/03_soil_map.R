@@ -1,4 +1,4 @@
-pacman::p_load(tidyverse, terra, tidyterra, patchwork, showtext)
+pacman::p_load(tidyverse, terra, tidyterra, patchwork, here)
 
 clay <- rast(here("data", "clay.tif")) # % by volume 0-25cm
 mean_ksat <- rast(here("data", "mean_ksat.tif")) # micrometers / second, high means drains well
@@ -31,10 +31,11 @@ gg_ksat <- ggplot() +
   )
 
 combined_soil_map <- gg_clay + gg_ksat
+
 ggsave(
   here("output", "combined_soil_map.png"),
   plot = combined_soil_map,
   width = 10,
   height = 4,
-  dpi = 500
+  dpi = 300
 )

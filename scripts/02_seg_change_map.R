@@ -1,4 +1,4 @@
-pacman::p_load(ggiraph, tidyverse, patchwork)
+pacman::p_load(ggiraph, tidyverse, patchwork, here)
 
 cbsa_wide <- read_csv(here("data", "cbsa_wide.csv"))
 
@@ -62,4 +62,10 @@ map_options <- list(
                       font-size: 18px; font-family: Arial"),
   opts_hover(),
   opts_hover_inv(css = "opacity: .25;")
+)
+
+girafe(
+  ggobj = map_interactive + scatter_interactive,
+  options = map_options,
+  opts_sizing(rescale = TRUE)
 )
