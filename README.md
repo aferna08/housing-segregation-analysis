@@ -5,6 +5,7 @@ This repository contains the code, data, and materials to create a brief vignett
 Due to file sizes, this repository does not contain raw Census data and the code used to clean and analyze segregation. Rather, this takes an already cleaned data set and generates tables and figures.
 
 The final report can be viewed [here](https://aferna08.github.io/housing-segregation-analysis/).
+
 ------------------------------------------------------------------------
 
 ## Repository Structure
