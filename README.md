@@ -4,6 +4,7 @@ This repository contains the code, data, and materials to create a brief vignett
 
 Due to file sizes, this repository does not contain raw Census data and the code used to clean and analyze segregation. Rather, this takes an already cleaned data set and generates tables and figures.
 
+The final report can be viewed [here](https://aferna08.github.io/housing-segregation-analysis/).
 ------------------------------------------------------------------------
 
 ## Repository Structure
@@ -14,7 +15,7 @@ Due to file sizes, this repository does not contain raw Census data and the code
     -   "01_analysis.R" creates the IV regressions
     -   "02_seg_change_map.R" creates an interactive visualization of segregation change and building permits
     -   "03_soil_map.R" creates a visualization of clay and hydraulic conductivity for soil across the U.S.
--   **`iv_report.qmd`**: Quarto file used to compile the main analysis report.
+-   **`report.Rmd`**: Markdown file used to compile the main analysis report. Each script is called within the report, so compiling it will generate all tables and figures.
 
 ------------------------------------------------------------------------
 
@@ -22,7 +23,7 @@ Due to file sizes, this repository does not contain raw Census data and the code
 
 1.  **Clone the Repository**: Clone the repository, ensuring that Git LFS is installed.
 2.  **Install Dependencies**: Scripts in the project use the [pacman](https://cran.r-project.org/web/packages/pacman/index.html) package (`install.packages("pacman")`) to install and load other required packages.
-3.  **Reproduce the Report**: Open the Quarto file (iv_report.qmd) in RStudio and render it to generate the full report.
+3.  **Reproduce the Report**: Open the markdown file (report.Rmd) in RStudio and compile it to generate the full report.
     -   Alternatively, run the scripts individually to view the raw output.
 
 ------------------------------------------------------------------------
