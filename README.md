@@ -29,4 +29,4 @@ Due to file sizes, this repository does not contain raw Census data and the code
 
 ## Contact
 
-If you have questions or would like to request the full working paper, please contact [aaronfernandez\@g.harvard.edu](mailto:aaronfernandez@g.harvard.edu){.email}.
+If you have questions or would like to request the full working paper, please contact [aaronfernandez\@g.harvard.edu](mailto:aaronfernandez@g.harvard.edu)
