@@ -63,17 +63,3 @@ map_options <- list(
   opts_hover(),
   opts_hover_inv(css = "opacity: .25;")
 )
-
-girafe_plot <- girafe(
-  ggobj = map_interactive + scatter_interactive,
-  options = map_options,
-  width_svg = 8,
-  height_svg = 3
-)
-
-htmlwidgets::saveWidget(
-  widget = girafe_plot,
-  file = here("output", "interactive_map.html"),
-  selfcontained = TRUE  # Embed all assets in a single HTML file
-)
-

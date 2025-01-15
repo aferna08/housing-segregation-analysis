@@ -8,5 +8,12 @@
 *.html
 *.pdf
 
+# Ignore everything in the output folder
+output/*
+
+# But do not ignore the folder itself or placeholder files
+!output/
+!output/.gitkeep
+
 # Temporary or system files
 .DS_Store
