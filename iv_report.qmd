@@ -1,0 +1,85 @@
+---
+title: "Instrumental Variable Analysis: Housing Permits and Segregation"
+author: "Aaron B. Fernandez, Harvard University"
+date: "`r Sys.Date()`"
+format: html
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE
+                      )
+
+library(here)
+```
+
+## Introduction
+
+Segregation between Black and White residents in the United States has declined over the past several decades, but progress has been uneven across metro areas. My analysis explores how housing permits contribute to these changes, using soil characteristics as a novel instrumental variable (IV) approach to estimate the causal relationship. This abridged report highlights key findings from my dissertation, showcasing how housing supply affects segregation dynamics.
+
+For full details, including methods and robustness checks, please contact me for the working paper.
+
+## Declines in Segregation
+
+Segregation is declining nationally, but metro areas vary widely in the pace and extent of change. The interactive map below shows how segregation (measured by the H index) has shifted between decades, alongside housing permits per 1,000 people. Metro areas with higher permitting rates tend to experience larger declines in segregation, but this relationship requires careful analysis to ensure it reflects causation rather than correlation.
+
+```{r}
+source(here("scripts", "02_seg_change_map.R"))
+girafe(
+  ggobj = map_interactive + scatter_interactive,
+  options = map_options,
+  opts_sizing(rescale = TRUE)
+)
+```
+
+```{r}
+suppressMessages({
+  source(here("scripts", "03_soil_map.R"))
+})
+```
+
+## Soil Characteristics as an Instrumental Variable
+
+To estimate the causal impact of housing permits on segregation, I use soil characteristics as instruments. In particular, clay content and hydraulic conductivity influence the cost and feasibility of housing development but are unrelated to social factors driving segregation, making them strong candidates for IV analysis. The maps below illustrate the variation in soil characteristics across metro areas, highlighting their potential to explain differences in housing permits.
+
+![Clay and Hydraulic Conductivity Maps](output/combined_soil_map.png){fig-align="center"}
+
+## IV Regression Results
+
+The table below presents results from three IV models. Each model uses soil characteristics to predict housing permits and estimate their effect on segregation change. The results suggest that an increase in housing permits per capita is associated with significant declines in segregation, even after accounting for regional and socioeconomic controls. This relationship is robust across models using different sets of soil characteristics.
+
+The table below presents the results from three IV models:
+
+1.  **Clay Instrument**: Using clay percentage as the sole instrument.\
+2.  **Clay & Hydraulic Conductivity**: Adding hydraulic conductivity as a second instrument.\
+3.  **All Soil Characteristics**: Including all available soil characteristics as instruments.
+
+```{r}
+
+suppressMessages({
+  suppressWarnings({
+    source(here("scripts", "01_analysis.R"))
+  })
+})
+
+iv_table
+```
+
+## Conclusion and Implications
+
+These findings underscore the importance of housing supply in reducing racial segregation. Policies that encourage housing development, particularly in areas where permitting is restrictive, could play a key role in fostering integration. By leveraging soil characteristics as an innovative instrumental variable, this analysis highlights how natural constraints influence urban inequality.
+
+## Data & Coding Sources
+
+-   [**Decennial Census Data from NHGIS**](http://doi.org/10.18128/D050.V19.0)\
+    Steven Manson, Jonathan Schroeder, David Van Riper, Katherine Knowles, Tracy Kugler, Finn Roberts, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 19.0 \[dataset\]. Minneapolis, MN: IPUMS. 2024. http://doi.org/10.18128/D050.V19.0
+
+-   [**UC Davis Soil Resource Lab in Collaboration with USDA NRCS**](casoilresource.lawr.ucdavis.edu/soil-properties/)\
+    Walkinshaw, Mike, A.T. O'Geen, D.E. Beaudette. "Soil Properties." California Soil Resource Lab, 1 Oct. 2023, casoilresource.lawr.ucdavis.edu/soil-properties/
+
+-   [**"Segregation" R Package**](https://elbersb.github.io/segregation/)\
+    Elbers B (2021). “A Method for Studying Differences in Segregation Across Time and Space.” Sociological Methods & Research, 52(1), 5-42. doi:10.1177/0049124121986204.
+
+-   [**Census Building Permits Survey**](https://www.census.gov/construction/bps/)

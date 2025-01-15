@@ -1,0 +1,12 @@
+# R-related files
+.Rhistory
+.RData
+.Rproj.user/
+
+# Quarto-related files
+*_files/
+*.html
+*.pdf
+
+# Temporary or system files
+.DS_Store
